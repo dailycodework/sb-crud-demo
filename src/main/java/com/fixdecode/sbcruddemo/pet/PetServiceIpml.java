@@ -1,5 +1,6 @@
 package com.fixdecode.sbcruddemo.pet;
 
+import com.fixdecode.sbcruddemo.exception.PetNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +34,8 @@ public class PetServiceIpml implements PetService {
     }
 
     @Override
-    public Optional<Pet> getById(Integer id) throws Exception {
+    public Optional<Pet> getById(Integer id)  {
         return Optional.ofNullable(petRepository.findById(id)
-                .orElseThrow(() -> new Exception("Pet not found !")));
+                .orElseThrow(() -> new PetNotFoundException("Pet not found !")));
     }
 }

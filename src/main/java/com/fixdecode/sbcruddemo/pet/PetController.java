@@ -1,10 +1,11 @@
 package com.fixdecode.sbcruddemo.pet;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -21,7 +22,7 @@ public class PetController {
         return  new ResponseEntity<>(petService.getPets(), OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<Pet> add(@RequestBody Pet pet){
+    public ResponseEntity<Pet> add(@RequestBody @Valid Pet pet){
         return new ResponseEntity<>(petService.add(pet), CREATED);
     }
 
